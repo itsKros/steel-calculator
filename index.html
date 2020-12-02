@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>Steel Rate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://fonts.googleapis.com/css?family=Russo+One|Exo:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.12/tailwind.min.css" integrity="sha512-KO1h5ynYuqsFuEicc7DmOQc+S9m2xiCKYlC3zcZCSEw0RGDsxcMnppRaMZnb0DdzTDPaW22ID/gAGCZ9i+RT/w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+
+        <div class="flex min-h-screen justify-center py-16 bg-indigo-500">
+            <div class="w-full p-12 bg-white md:w-1/2 lg:w-5/12">
+                <h1 class="text-xl font-semibold text-center">Cost <span class="font-normal">Calculator</span></h1>
+                <form class="mt-6">
+                
+                <label for="basicRate" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Basic Rate</label>
+                <select name="basicRate" id="basicRate" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                    <option value="8">8 MM</option>
+                    <option value="1012">10 MM or 12 MM</option>
+                </select>
+                
+                <label for="todayRate" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Today's Rate</label>
+                <input id="todayRate" type="text" name="todayRate" placeholder="e.g 34911" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                
+                <label for="loading" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Loading</label>
+                <input id="loading" type="text" name="loading" placeholder="250 per ton"  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                
+                <label for="diaDiff" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Diameter Difference</label>
+                <select name="diaDiff" id="diaDiff" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                    <option value="4000">4000</option>
+                    <option value="3000">3000</option>
+                </select>
+
+                <label for="quantity" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Quantity</label>
+                <input id="quantity" type="text" name="quantity" placeholder=""  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+
+                <label for="gst" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">GST 18%</label>
+                <input id="gst" type="text" name="gst" placeholder=""  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                
+                <div class="flex justify-between items-center mt-5">
+                    <span class="w-1/3">
+                        <p class="block text-xl font-semibold text-gray-600 uppercase">Total</p>
+                    </span>
+                    <span class="w-2/3">
+                        <input id="total" type="text" name="total" placeholder=""  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required readonly/>
+                    </span>
+                </div>
+                <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                    Submit
+                </button>
+                
+                </form>
+            </div>
+        </div>
+
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script  src="script.js"></script>
+    </body>
+</html>
