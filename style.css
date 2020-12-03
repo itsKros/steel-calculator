@@ -1,0 +1,11 @@
+.box-shadow {
+    box-shadow: 1px 1px 12px rgb(0 0 0 / 20%);
+}
+.border-radius {
+    border-radius: 10px;
+}
+
+.border-top-radius {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
