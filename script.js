@@ -46,7 +46,73 @@
     
    
     
+
     
+
+    var x = 1; //Initial field counter is 1
+    var maxField = 6; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = `<div class="flex justify-between items-center mb-5">
+                        <span class="w-1/2 mr-2">
+                            <label for="basicRate" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Basic</label>
+                            <select name="basicRate[]" onchange="getBasicVal(this);" class="basicRate block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                                <option disabled selected value> -- Select thickness -- </option>
+                                <option value="8">8mm</option>
+                                <option value="10">10mm</option>
+                                <option value="12">12mm</option>
+                                <option value="16">16mm</option>
+                                <option value="20">20mm</option>
+                                <option value="25">25mm</option>
+                            </select>
+                        </span>
+                        <span class="w-1/2">
+                            <label for="" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Quantity (in tons)</label>
+                            <input id="quantity" type="text" name="quantity" placeholder=""  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                        </span><a href="javascript:void(0);" class="remove_button" title="Remove"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></a>
+                    </div>`; 
+                    //New input field html 
+
+    
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+        
+        $(".basicRate option:selected").each(function() {
+            var value = $(this).val()
+            //loop through all option(not selected option) if you don't want to disable selected option .. else just use `.basicRate option`
+            $(".basicRate option:not(:selected)").each(function() {
+            if ($(this).val() == value) {
+                $(this).attr("disabled", true);
+            }
+            })
+        })
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+
+        $(".basicRate option:selected").each(function() {
+            var value = $(this).val()
+            //loop through all option(not selected option) if you don't want to disable selected option .. else just use `.basicRate option`
+            $(".basicRate option:not(:selected)").each(function() {
+            if ($(this).val() == value) {
+                $(this).attr("disabled", true);
+            }
+            })
+        })
+    });
+
+
+        
     // Setting Dia Diff based on Basic rate for (8mm & 10mm-12mm)
     function getBasicVal(val)
     {
@@ -70,6 +136,8 @@
             var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
             return res;
     }
+    
+    // Today's Rate x Quantity + Loading x Quantity + diameter difference
     
     //Final Amount
     totalCalc = function(){
@@ -100,66 +168,9 @@
     quantity.change(function(){
         totalCalc();
     });
-    
 
-    var x = 1; //Initial field counter is 1
-    var maxField = 6; //Input fields increment limitation
-    var addButton = $('.add_button'); //Add button selector
-    var wrapper = $('.field_wrapper'); //Input field wrapper
-    var fieldHTML = `<div class="flex justify-between items-center mb-5">
-    <span class="w-1/2 mr-2">
-        <label for="basicRate" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Basic</label>
-        <select name="basicRate[]" id="basicRate" onchange="getBasicVal(this);" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
-            <option value="8">8mm</option>
-            <option value="10">10mm</option>
-            <option value="12">12mm</option>
-            <option value="16">16mm</option>
-            <option value="20">20mm</option>
-            <option value="25">25mm</option>
-        </select>
-    </span>
-    <span class="w-1/2">
-        <label for="" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Quantity (in tons)</label>
-        <input id="quantity" type="text" name="quantity" placeholder=""  class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
-    </span><a href="javascript:void(0);" class="remove_button" title="Remove"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></a>
-</div>`; //New input field html 
+
 
     
-    
-    //Once add button is clicked
-    $(addButton).click(function(){
-        //Check maximum number of input fields
-        if(x < maxField){ 
-            x++; //Increment field counter
-            $(wrapper).append(fieldHTML); //Add field html
-            
-        }
-    });
-    
-    //Once remove button is clicked
-    $(wrapper).on('click', '.remove_button', function(e){
-        e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        x--; //Decrement field counter
-    });
-
-    $(document).on('change', 'select[name="basicRate[]"]', function(){
-  
-        var selectedValues = {};
-        $('select[name="basicRate[]"]').each(function(){
-            var text = $(this).children("option").filter(":selected").text();
-            var value = $(this).val();
-            selectedValues[text] = value;
-
-        });
-
-        var textValue = $('#servicetypesArray').val(selectedValues);
-     
-      console.log(JSON.stringify(selectedValues, null, 4));
-
-    });
-
-
-      
 
 

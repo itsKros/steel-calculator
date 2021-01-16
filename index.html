@@ -25,7 +25,8 @@
                     <div class="flex justify-between items-center mb-5">
                         <span class="w-1/2 mr-2">
                             <label for="basicRate" class="block text-xs mt-2 font-semibold text-gray-600 uppercase">Basic</label>
-                            <select name="basicRate[]" id="basicRate" onchange="getBasicVal(this);" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                            <select name="basicRate[]" onchange="getBasicVal(this);" class="basicRate block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required>
+                                <option disabled selected value> -- Select thickness -- </option>
                                 <option value="8">8mm</option>
                                 <option value="10">10mm</option>
                                 <option value="12">12mm</option>
