@@ -137,7 +137,7 @@
             return res;
     }
     
-    // Today's Rate x Quantity + Loading x Quantity + diameter difference
+    // Today's Rate x Quantity + Loading x Quantity + diameter-difference
     
     //Final Amount
     totalCalc = function(){
