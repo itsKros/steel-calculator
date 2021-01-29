@@ -9,8 +9,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.12/tailwind.min.css" integrity="sha512-KO1h5ynYuqsFuEicc7DmOQc+S9m2xiCKYlC3zcZCSEw0RGDsxcMnppRaMZnb0DdzTDPaW22ID/gAGCZ9i+RT/w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 </head>
-    <body>
+    <body >
+
+        <section id="home" class="w-full flex justify-center items-center my-10">
+            <form class="">
+              <div class="form-group">
+                <label class="text-gray-600 font-semibold text-lg">Phone Number</label>
+                <div
+                v-for="(input, index) in phoneNumbers"
+                :key="`phoneInput-${index}`"
+                class="input wrapper flex items-center"
+                >
+                <input
+                    v-model="input.phone"
+                    type="text"
+                    class="h-10 rounded-lg outline-none p-2"
+                    placeholder=" Enter Phone Number"
+                />
+                
+
+                <!--          Remove Svg Icon-->
+                <svg
+                    v-show="phoneNumbers.length > 1"
+                    @click="removeField(index, phoneNumbers)"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    class="ml-2 cursor-pointer"
+                >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                    fill="#EC4899"
+                    d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"
+                    />
+                </svg>
+                </div>
+                <!--          Add Svg Icon-->
+                <svg
+                    @click="addField(input, phoneNumbers)"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    class="ml-2 cursor-pointer"
+                >
+                    <path fill="none" d="M0 0h24v24H0z" />
+                    <path
+                    fill="green"
+                    d="M11 11V7h2v4h4v2h-4v4h-2v-4H7v-2h4zm1 11C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"
+                    />
+                </svg>
+              </div>
+            </form>
+          </section>
 
         <div class="flex min-h-screen justify-center py-16 px-5 bg-white">
             <div class="w-full bg-white md:w-1/2 lg:w-5/12 pb-5 box-shadow border-radius">
@@ -82,5 +137,6 @@
 
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script  src="script.js"></script>
+        <script  src="v.js"></script>
     </body>
 </html>
