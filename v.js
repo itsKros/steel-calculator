@@ -13,11 +13,11 @@ let app = new Vue({
         
     },
     methods:{
-        addField(value, fieldType) {
+          addField(value, fieldType) {
             fieldType.push({ value: "" });
           },
           removeField(index, fieldType) {
-            type.splice(index, 1);
+            fieldType.splice(index, 1);
           },
 
 
